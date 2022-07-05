@@ -1,0 +1,35 @@
+<html>
+<head>
+<script type="text/javascript" src="https://credit.j-payment.co.jp/gateway/js/jquery.js"></script>
+<script type="text/javascript" src="https://credit.j-payment.co.jp/gateway/js/CPToken.js"></script>
+<script>
+ // カード情報入力フォーム表示
+ function doPurchase() {
+     //CP非同期通信よりカード番号入力画面を表示する
+     CPToken.CardInfo (
+         {
+             aid: '121246'
+         },
+         execPurchase
+     );
+ }
+  // コールバック関数
+ function execPurchase(resultCode, errMsg) {
+     if (resultCode != "Success") {
+         // 戻り値がSuccess以外の場合はエラーメッセージを表示
+         window.alert(errMsg);
+     } else {
+         // スクリプトからフォームをsubmit
+         // $("#mainform").submit();
+     }
+ }
+</script>
+</head>
+<body>
+<form id="mainform">
+     <input id="tkn" name="tkn" type="hidden" value="">
+     <div id="CARD_INPUT_FORM" />
+     <input type="button" value="購入する" onclick="doPurchase()"/>
+ </form>
+</body>
+</html>
